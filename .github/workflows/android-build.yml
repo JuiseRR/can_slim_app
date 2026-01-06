@@ -28,6 +28,9 @@ jobs:
           flutter-version: '3.38.5'
           channel: 'stable'
           
+      - name: Flutter pub get
+        run: flutter pub get
+
       - name: Set app version
         run: |
           VERSION_NAME=1.0.${{ github.run_number }}
@@ -37,9 +40,6 @@ jobs:
 
           echo "Version set to $VERSION_NAME+$VERSION_CODE"
           
-      - name: Flutter pub get
-        run: flutter pub get
-
       - name: Build APK
         run: flutter build apk --release
 
