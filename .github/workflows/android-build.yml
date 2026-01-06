@@ -27,7 +27,16 @@ jobs:
         with:
           flutter-version: '3.38.5'
           channel: 'stable'
+          
+      - name: Set app version
+        run: |
+          VERSION_NAME=1.0.${{ github.run_number }}
+          VERSION_CODE=${{ github.run_number }}
 
+          sed -i "s/^version:.*/version: $VERSION_NAME+$VERSION_CODE/" pubspec.yaml
+
+          echo "Version set to $VERSION_NAME+$VERSION_CODE"
+          
       - name: Flutter pub get
         run: flutter pub get
 
